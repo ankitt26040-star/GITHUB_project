@@ -1,0 +1,43 @@
+cd capsule/
+cp members/Miraya/poem.txt outbox/"poem backup.txt"
+echo "Signed: Miraya" >> members/Miraya/poem.txt
+
+mv members/"Shourya Veer Singh"/-draft.txt members/"Shourya Veer Singh"/final.txt
+echo "Approved by Shourya Veer Singh" >> members/"Shourya Veer Singh"/final.txt
+mkdir -p sealed/"batch 2026"/letters
+
+cat members/Priyanshi/letter.txt > sealed/"batch 2026"/letters/Priyanshi.txt
+cat members/"Shourya Veer Singh"/letter.txt > sealed/"batch 2026"/letters/"Shourya Veer Singh.txt"
+cat members/Shubh/letter.txt > sealed/"batch 2026"/letters/Shubh.txt
+cat members/Miraya/letter.txt > sealed/"batch 2026"/letters/Miraya.txt
+cat members/Jaidev/letter.txt > sealed/"batch 2026"/letters/Jaidev.txt
+cat members/Aryansh/letter.txt > sealed/"batch 2026"/letters/Aryansh.txt
+
+touch sealed/anthology.txt
+cat members/Aryansh/letter.txt >> sealed/anthology.txt
+cat members/Jaidev/letter.txt >> sealed/anthology.txt
+cat members/Miraya/letter.txt >> sealed/anthology.txt
+cat members/Priyanshi/letter.txt >> sealed/anthology.txt
+cat members/"Shourya Veer Singh"/letter.txt >> sealed/anthology.txt
+cat members/Shubh/letter.txt >> sealed/anthology.txt
+cat members/Miraya/poem.txt >> sealed/anthology.txt
+cat members/"Shourya Veer Singh"/final.txt >> sealed/anthology.txt
+
+mv members/Aryansh/.secret sealed/.aryansh_secret
+mv members/Priyanshi/photo.raw outbox/"priyanshi photo.raw"
+
+rm members/Shubh/notes.bak
+rm drafts/*.bak
+
+rm drafts/.autosave.bak
+mv drafts/keep.bak.txt outbox/
+rmdir drafts
+
+echo "CAPSULE 2026" > outbox/manifest.txt
+echo "MEMBERS 6" >> outbox/manifest.txt
+
+echo "STATUS SEALED" >> outbox/manifest.txt
+rmdir members/Jaidev/old/sketches
+
+rmdir members/Jaidev/old
+touch sealed/.sealed
