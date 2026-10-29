@@ -1,0 +1,140 @@
+
+Problem Statement: NST'RU (2k26) Time Capsule
+
+Six batchmates, Priyanshi, Shourya Veer Singh, Shubh, Miraya, Jaidev, and Aryansh, are sealing a time capsule before they graduate. Each of them left a folder of belongings. Your job is to back up, sign, collect, compile, move, and clean these files so that the capsule can be sealed.
+This is not as simple as it looks:
+• Some names contain spaces.
+• One file name starts with a dash (-).
+• Some files are hidden (their names start with .).
+• One wildcard can delete a file that must be kept.
+• Some actions change a file that a later action needs in its original form, so the order of your commands matters.
+
+Given Directory Structure
+
+text
+capsule/
+└── members/
+    ├── Priyanshi/
+    │   ├── letter.txt
+    │   └── photo.raw
+    ├── Shourya Veer Singh/
+    │   ├── letter.txt
+    │   └── -draft.txt
+    ├── Shubh/
+    │   ├── letter.txt
+    │   └── notes.bak
+    ├── Miraya/
+    │   ├── letter.txt
+    │   └── poem.txt
+    ├── Jaidev/
+    │   ├── letter.txt
+    │   └── old/
+    │       └── sketches/
+    └── Aryansh/
+        ├── letter.txt
+        └── .secret
+├── drafts/
+    ├── v1.bak
+    ├── v2.bak
+    ├── v3.bak
+    ├── .autosave.bak
+    └── keep.bak.txt
+├── sealed/
+├── outbox/
+    ├── manifest.txt
+    └── seal.lock
+Use code with caution.
+
+Actions to Perform
+
+
+1. Back up Miraya's poem.
+
+• Copy capsule/members/Miraya/poem.txt into capsule/outbox/.
+• Name the copy poem backup.txt. The name contains a space.
+
+2. Sign the poem.
+
+• Append this exact line to capsule/members/Miraya/poem.txt:text
+Signed: Miraya
+Use code with caution.
+
+3. Finalise Shourya's speech.
+
+• Inside capsule/members/Shourya Veer Singh/, rename -draft.txt to final.txt.
+• Then append this exact line to final.txt:text
+Approved by Shourya Veer Singh
+Use code with caution.
+
+4. Build the letters vault.
+
+• Inside capsule/sealed/, create the nested path batch 2026/letters/ using a single command.
+• The folder batch 2026 contains a space.
+
+5. Collect the letters.
+
+• Copy each member's letter.txt into capsule/sealed/batch 2026/letters/.
+• Each copy must be named after its owner:
+	• members/Priyanshi/letter.txt → Priyanshi.txt
+	• members/Shourya Veer Singh/letter.txt → Shourya Veer Singh.txt
+	• members/Shubh/letter.txt → Shubh.txt
+	• members/Miraya/letter.txt → Miraya.txt
+	• members/Jaidev/letter.txt → Jaidev.txt
+	• members/Aryansh/letter.txt → Aryansh.txt
+• The original letter.txt in every member's folder must stay where it is.
+
+6. Compile the anthology.
+
+• Create capsule/sealed/anthology.txt containing these files, in exactly this order:
+	1. Aryansh/letter.txt
+	2. Jaidev/letter.txt
+	3. Miraya/letter.txt
+	4. Priyanshi/letter.txt
+	5. Shourya Veer Singh/letter.txt
+	6. Shubh/letter.txt
+	7. Miraya/poem.txt (the signed version)
+	8. Shourya Veer Singh/final.txt (the approved version)
+
+7. Hide Aryansh's secret.
+
+• Move capsule/members/Aryansh/.secret into capsule/sealed/ and rename it to .aryansh_secret in the same command.
+• It must stay a hidden file.
+
+8. Send Priyanshi's photo.
+
+• Move capsule/members/Priyanshi/photo.raw into capsule/outbox/ and rename it to priyanshi photo.raw in the same command.
+
+9. Clean Shubh's folder.
+
+• Delete capsule/members/Shubh/notes.bak.
+• Shubh's letter.txt must not be deleted.
+
+10. Purge the drafts.
+
+• Delete every visible file in capsule/drafts/ that ends in .bak, using a single wildcard command.
+• Also delete the hidden file .autosave.bak.
+• keep.bak.txt must NOT be deleted. Move it into capsule/outbox/ instead.
+• Then remove the now-empty capsule/drafts/ directory. Do not use rm -r.
+
+11. Rewrite the manifest.
+
+• capsule/outbox/manifest.txt already contains an old line.
+• Replace its whole content so that it contains exactly these three lines, in this order:text
+CAPSULE 2026
+MEMBERS 6
+STATUS SEALED
+Use code with caution.
+
+12. Final sweep and seal.
+
+• Remove Jaidev's empty folders old/sketches/ and old/ using rmdir. Do not use rm -r.
+• Jaidev's folder and his letter.txt must remain.
+• Create an empty hidden file capsule/sealed/.sealed.
+
+Important Notes / Constraints
+
+• capsule/seal.lock must not be touched. It must still exist at the end with its original content.
+• poem backup.txt must NOT contain the line Signed: Miraya, but anthology.txt MUST contain it.
+• Shourya's speech inside anthology.txt must include the line Approved by Shourya Veer Singh.
+• All six original letter.txt files must still exist with their original content.
+• Order matters. Read all the actions before you begin.
